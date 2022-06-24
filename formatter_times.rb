@@ -6,77 +6,30 @@ class FormatterTimes
   end
 
   def call
-    entrance
-    lunch
-    return_lunch
-    stop
-    return_stop
-    exit
-  end
-
-  def entrance
-    return '' if @times[:entrance] == ''
-
-    return_values 'entrada', convert_time(@times[:entrance])
-  end
-
-  def lunch
-    return '' if @times[:lunch] == ''
-
-    return_values 'almoço', convert_time(@times[:lunch])
-  end
-
-  def return_lunch
-    return '' if @times[:return_lunch] == ''
-
-    return_values 'retorno do almoço', convert_time(@times[:return_lunch])
-  end
-
-  def stop
-    return '' if @times[:stop] == ''
-
-    return_values 'parada', convert_time(@times[:stop])
-  end
-
-  def return_stop
-    return '' if @times[:return_stop] == ''
-
-    return_values('retorno da parada', convert_time(@times[:return_stop]))
-  end
-
-  def exit
-    return '' if @times[:lunch] == ''
-
-    calculating_exit convert_time @times[:return_lunch]
+    refactoring_time
+    @times
   end
 
   private
 
-  def convert_time(time)
-    Time.parse(time)
+  def refactoring_time
+    separing_times
+    converting_to_integer
   end
 
-  def return_values(names, time)
-    hour = time.hour.to_s
-    minutes = time.min.to_s
-    seconds = time.sec.to_s
-
-    hour = '00' if hour == '0'
-    minutes = '00' if minutes == '0'
-    seconds = '00' if seconds == '0'
-
-    puts "Seu horário de #{names} é #{hour}:#{minutes}:#{seconds}"
+  def separing_times
+    @times[:entrance] = @times[:entrance].split(':')
+    @times[:lunch] = @times[:lunch].split(':')
+    @times[:return_lunch] = @times[:return_lunch].split(':')
+    @times[:stop] = @times[:stop].split(':')
+    @times[:return_stop] = @times[:return_stop].split(':')
   end
 
-  def calculating_exit(time)
-    hour = time.hour.to_s
-    minutes = time.min.to_s
-    seconds = time.sec.to_s
-
-    hour = '00' if hour == '0'
-    minutes = '00' if minutes == '0'
-    seconds = '00' if seconds == '0'
-
-    puts "Seu horário de saída é #{hour}:#{minutes}:#{seconds}"
+  def converting_to_integer
+    @times[:entrance] = @times[:entrance].map(&:to_i)
+    @times[:lunch] = @times[:lunch].map(&:to_i)
+    @times[:return_lunch] = @times[:return_lunch].map(&:to_i)
+    @times[:stop] = @times[:stop].map(&:to_i)
+    @times[:return_stop] = @times[:return_stop].map(&:to_i)
   end
 end
