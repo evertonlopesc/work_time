@@ -1,9 +1,7 @@
 # frozen_string_literal: true
 
-require 'date'
-require 'time'
 require 'debug'
-require_relative 'formatter_times'
+require_relative 'calculation_time'
 
 def your_times
   options = {}
@@ -33,8 +31,12 @@ def init
   puts "ESCOLHA ENTRE ESSAS ALTERNATIVAS: ENTRADA, ALMOÇO, PARADA, RETORNO, SAÍDA.\N"
   options = your_times
 
-  result = FormatterTimes.new(options)
-  result.call
+  system 'clear'
+
+  result = CalculationTime.new(options)
+  result.entrance
+  result.lunch
+  result.end_of_working_hours
 end
 
 puts "APLICAÇÃO PARA CALCULAR SEU HORÁRIO DE TRABALHO\n\n"
