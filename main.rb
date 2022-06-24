@@ -8,21 +8,21 @@ require_relative 'formatter_times'
 def your_times
   options = {}
 
-  puts 'Informe a entrada: '
+  print 'Informe a entrada: '
   options[:entrance] = gets.chomp
 
   puts "CASO NÃO TENHA FEITO TODAS AS OPÇÕES BASTA APERTAR ENTER!\n"
 
-  puts 'Informe o horário de almoço: '
+  print 'Informe o horário de almoço: '
   options[:lunch] = gets.chomp
 
-  puts 'Informe o horário de retorno: '
+  print 'Informe o horário de retorno: '
   options[:return_lunch] = gets.chomp
 
-  puts 'Informe o horário da parada: '
+  print 'Informe o horário da parada: '
   options[:stop] = gets.chomp
 
-  puts 'Informe o horário de retorno: '
+  print 'Informe o horário de retorno: '
   options[:return_stop] = gets.chomp
 
   options
