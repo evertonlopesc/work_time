@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative 'refactoring_zero'
+
 class FormatterTimes
   def initialize(options)
     @times = options
@@ -15,6 +17,7 @@ class FormatterTimes
   def refactoring_time
     separing_times
     converting_to_integer
+    identifing_hour_minutes
   end
 
   def separing_times
@@ -31,5 +34,18 @@ class FormatterTimes
     @times[:return_lunch] = @times[:return_lunch].map(&:to_i)
     @times[:stop] = @times[:stop].map(&:to_i)
     @times[:return_stop] = @times[:return_stop].map(&:to_i)
+  end
+
+  def refactoring_when_zero(time)
+    RefactoringZero.new(time).call
+  end
+
+  def identifing_hour_minutes
+    times = @times
+    @times[:entrance]     = refactoring_when_zero times[:entrance]
+    @times[:lunch]        = refactoring_when_zero times[:lunch]
+    @times[:return_lunch] = refactoring_when_zero times[:return_lunch]
+    @times[:stop]         = refactoring_when_zero times[:stop]
+    @times[:return_stop]  = refactoring_when_zero times[:return_stop]
   end
 end
