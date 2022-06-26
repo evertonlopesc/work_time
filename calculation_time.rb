@@ -5,6 +5,10 @@ require 'time'
 require_relative 'formatter_times'
 
 class CalculationTime
+  HOUR = 60
+  HOUR_IN_SECONDS = 3600
+  HOUR_WORKING = 8
+
   def initialize(times)
     @times = FormatterTimes.new(times).call
 
