@@ -28,6 +28,11 @@ class CalculationTime
     convert_minutes_to_time(lunch)
   end
 
+  def calculate_stopped_break
+    stopped = total_pause @stop, @return_stop
+    convert_minutes_to_time(stopped)
+  end
+
   def total_pause(starting, returning)
     result = ((returning - starting) / HOUR_IN_SECONDS) * HOUR
     result.round 0
