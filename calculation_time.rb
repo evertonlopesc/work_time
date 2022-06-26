@@ -33,6 +33,15 @@ class CalculationTime
     convert_minutes_to_time(stopped)
   end
 
+  def calculate_range
+    sum_pause = total_pause(@lunch, @return_lunch) + total_pause(@stop, @return_stop)
+    hour = sum_pause / HOUR
+    hour = '00' if hour.zero?
+    minutes = sum_pause % HOUR
+
+    Time.parse("#{hour}:#{minutes}:00")
+  end
+
   def total_pause(starting, returning)
     result = ((returning - starting) / HOUR_IN_SECONDS) * HOUR
     result.round 0
