@@ -7,11 +7,12 @@ require_relative 'formatter_times'
 class CalculationTime
   def initialize(times)
     @times = FormatterTimes.new(times).call
-  end
 
-  def entrance
-    entrance = convert_time @times[:entrance]
-    puts "Iniciou o trabalho às #{entrance.strftime '%H:%M:%S'} horas"
+    @entrance     = convert_time(@times[:entrance])
+    @lunch        = convert_time(@times[:lunch])
+    @return_lunch = convert_time(@times[:return_lunch])
+    @stop         = convert_time(@times[:stop])
+    @return_stop  = convert_time(@times[:return_stop])
   end
 
   def lunch
