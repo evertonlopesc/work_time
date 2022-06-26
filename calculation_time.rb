@@ -42,6 +42,19 @@ class CalculationTime
     Time.parse("#{hour}:#{minutes}:00")
   end
 
+  def calculate_end_work
+    range = calculate_range
+    hour = @entrance.hour + range.hour + HOUR_WORKING
+    minutes = @entrance.min + range.min
+
+    if (minutes / HOUR).positive?
+      hour += (minutes / HOUR)
+      minutes = minutes % HOUR
+    end
+
+    Time.parse("#{hour}:#{minutes}:00").strftime '%H:%M'
+  end
+
   def total_pause(starting, returning)
     result = ((returning - starting) / HOUR_IN_SECONDS) * HOUR
     result.round 0
