@@ -15,32 +15,14 @@ class CalculationTime
     @return_stop  = convert_time(@times[:return_stop])
   end
 
-  def lunch
-    lunch = convert_time @times[:lunch]
-    puts "Saiu para almoçar às #{lunch.strftime '%H:%M:%S'} horas"
   end
 
-  def return_lunch
-    return_lunch = convert_time @times[:return_lunch]
-    puts "Retornou do almoçar às #{lunch.strftime '%H:%M:%S'} horas"
+
   end
 
-  def end_of_working_hours
-    hour = @times[:entrance][0] + 9
-    minutes = @times[:entrance][1]
-
-    puts "Fim do expediente às #{hour}:#{minutes} horas"
-  end
-
-  private
-
-  def refactoring_when_zero(time)
-    RefactoringZero.new(time).call
   end
 
   def convert_time(time)
-    time = refactoring_when_zero time
-
     Time.parse("#{time[:hours]}:#{time[:minutes]}:#{time[:seconds]}")
   end
 end
