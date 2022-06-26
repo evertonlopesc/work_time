@@ -21,8 +21,8 @@ class CalculationTime
 
   def call
     puts "Begin time in   #{@entrance.strftime('%H:%M')} H"
-    puts "Time lunch:    #{calculate_lunch_break} H"
-    puts "Time stopped:  #{calculate_stopped_break} H"
+    puts "Time lunch:     #{calculate_lunch_break} H"
+    puts "Time stopped:   #{calculate_stopped_break} H"
     puts "Total interval: #{calculate_range.strftime('%H:%M')} H"
     puts "End of work in: #{calculate_end_work} H"
   end
