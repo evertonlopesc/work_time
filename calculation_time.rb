@@ -3,7 +3,6 @@
 require 'date'
 require 'time'
 require_relative 'formatter_times'
-require_relative 'refactoring_zero'
 
 class CalculationTime
   def initialize(times)
