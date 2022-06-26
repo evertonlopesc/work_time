@@ -21,9 +21,27 @@ class CalculationTime
 
   end
 
+  private
 
+  def calculate_lunch_break
+    lunch = total_pause @lunch, @return_lunch
+    convert_minutes_to_time(lunch)
   end
 
+  def total_pause(starting, returning)
+    result = ((returning - starting) / HOUR_IN_SECONDS) * HOUR
+    result.round 0
+  end
+
+  def convert_minutes_to_time(time)
+    if (time / HOUR).positive?
+      hour = (time / HOUR)
+      minutes = time % HOUR
+
+      return Time.parse("#{hour}:#{minutes}:00").strftime '%H:%M'
+    end
+
+    Time.parse("00:#{time}:00").strftime '%H:%M'
   end
 
   def convert_time(time)
