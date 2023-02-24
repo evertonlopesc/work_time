@@ -13,7 +13,7 @@ module Lib
     def initialize(times)
       @times = FormatterTimes.new(times).call
 
-      @entrance     = convert_time(@times[:entrance])
+      @entry     = convert_time(@times[:entry])
       @lunch        = convert_time(@times[:lunch])
       @return_lunch = convert_time(@times[:return_lunch])
       @stop         = convert_time(@times[:stop])
@@ -21,7 +21,7 @@ module Lib
     end
 
     def call
-      puts "Begin time in   #{@entrance.strftime('%H:%M')} H"
+      puts "Begin time in   #{@entry.strftime('%H:%M')} H"
       puts "Time lunch:     #{calculate_lunch_break} H"
       puts "Time stopped:   #{calculate_stopped_break} H"
       puts "Total interval: #{calculate_range.strftime('%H:%M')} H"
@@ -51,8 +51,8 @@ module Lib
 
     def calculate_end_work
       range = calculate_range
-      hour = @entrance.hour + range.hour + HOUR_WORKING
-      minutes = @entrance.min + range.min
+      hour = @entry.hour + range.hour + HOUR_WORKING
+      minutes = @entry.min + range.min
 
       if (minutes / HOUR).positive?
         hour += (minutes / HOUR)

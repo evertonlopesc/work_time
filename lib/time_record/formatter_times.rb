@@ -22,7 +22,7 @@ module Lib
     end
 
     def separing_times
-      @times[:entrance] = @times[:entrance].split(':')
+      @times[:entry] = @times[:entry].split(':')
       @times[:lunch] = @times[:lunch].split(':')
       @times[:return_lunch] = @times[:return_lunch].split(':')
       @times[:stop] = @times[:stop].split(':')
@@ -30,7 +30,7 @@ module Lib
     end
 
     def converting_to_integer
-      @times[:entrance] = @times[:entrance].map(&:to_i)
+      @times[:entry] = @times[:entry].map(&:to_i)
       @times[:lunch] = @times[:lunch].map(&:to_i)
       @times[:return_lunch] = @times[:return_lunch].map(&:to_i)
       @times[:stop] = @times[:stop].map(&:to_i)
@@ -43,7 +43,7 @@ module Lib
 
     def identifing_hour_minutes
       times = @times
-      @times[:entrance]     = refactoring_when_zero times[:entrance]
+      @times[:entry]     = refactoring_when_zero times[:entry]
       @times[:lunch]        = refactoring_when_zero times[:lunch]
       @times[:return_lunch] = refactoring_when_zero times[:return_lunch]
       @times[:stop]         = refactoring_when_zero times[:stop]
