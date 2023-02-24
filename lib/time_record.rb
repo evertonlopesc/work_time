@@ -50,10 +50,10 @@ module Lib
     def register_stop(response:)
       return self unless %w[yes y].include?(response)
 
-      print 'Inform your departure for lunch: '
+      print 'Inform your departure for break: '
       self.stop = gets.chomp
 
-      print 'Inform your return from lunch: '
+      print 'Inform your return from break: '
       self.return_stop = gets.chomp
     end
   end
