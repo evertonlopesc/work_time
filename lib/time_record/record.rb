@@ -2,7 +2,7 @@
 
 require_relative 'register/entry'
 require_relative 'register/pause'
-require_relative 'calculation_time'
+require_relative 'office_hour/times'
 
 module Lib
   module TimeRecord
@@ -21,7 +21,9 @@ module Lib
       end
 
       def display_hours_worked
-        CalculationTime.new(list_times).call
+        times = OfficeHour::Times.new(times: list_times)
+
+        times.call
       end
 
       def list_times
